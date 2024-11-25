@@ -1,0 +1,7 @@
+. $home/.profile
+
+path=($home/.local/bin $GOPATH/bin /usr/bin)
+prompt=('% ' ' ')
+history=$XDG_CACHE_HOME/history/rc
+
+umask 022

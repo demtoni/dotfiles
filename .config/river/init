@@ -1,0 +1,51 @@
+#!/bin/sh
+
+mod=Alt
+
+riverctl map normal $mod Return spawn footclient
+riverctl map normal $mod P spawn wmenu-run
+riverctl map normal $mod B spawn 'flatpak --user run com.vivaldi.Vivaldi'
+riverctl map normal None Print spawn 'grim -g "$(slurp)" - | wl-copy -t image/png'
+
+riverctl map normal $mod X close
+riverctl map normal $mod+Shift Q exit
+riverctl map normal $mod Z zoom
+riverctl map normal $mod F toggle-fullscreen
+
+riverctl map normal $mod+Shift H send-layout-cmd rivertile "main-count +1"
+riverctl map normal $mod H send-layout-cmd rivertile "main-ratio -0.05"
+riverctl map normal $mod J focus-view next
+riverctl map normal $mod K focus-view previous
+riverctl map normal $mod L send-layout-cmd rivertile "main-ratio +0.05"
+riverctl map normal $mod+Shift L send-layout-cmd rivertile "main-count -1"
+
+riverctl focus-follows-cursor always
+riverctl input *TrackPoint* pointer-accel 1
+
+for i in $(seq 1 9)
+do
+    tags=$((1 << ($i - 1)))
+    riverctl map normal $mod $i set-focused-tags $tags
+    riverctl map normal $mod+Shift $i set-view-tags $tags
+done
+
+riverctl map normal None XF86AudioRaiseVolume  spawn 'pactl set-sink-volume @DEFAULT_SINK@ +5%'
+riverctl map normal None XF86AudioLowerVolume  spawn 'pactl set-sink-volume @DEFAULT_SINK@ -5%'
+riverctl map normal None XF86AudioMute         spawn 'pactl set-sink-mute @DEFAULT_SINK@ toggle'
+
+riverctl background-color 0x000000
+riverctl border-color-focused 0x888888
+riverctl border-color-unfocused 0x444444
+riverctl border-width 1
+
+riverctl keyboard-layout -options ctrl:nocaps,grp:win_space_toggle us,ru
+riverctl set-repeat 40 150
+riverctl set-cursor-warp on-focus-change
+
+pipewire &
+foot -s &
+while fetchstats; do sleep 3; done | dam &
+
+riverctl default-layout rivertile
+
+rivertile -view-padding 2 -outer-padding 2 &

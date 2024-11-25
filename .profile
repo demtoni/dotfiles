@@ -1,0 +1,22 @@
+XDG_CONFIG_HOME=$home/.config
+XDG_DATA_HOME=$home/.local/share
+XDG_CACHE_HOME=$home/.cache
+XDG_RUNTIME_DIR=/tmp/`{id -u}
+
+[ -e $XDG_RUNTIME_DIR ] || mkdir -p -m 0700 $XDG_RUNTIME_DIR
+
+GNUPGHOME=$XDG_CONFIG_HOME/gnupg
+WINEPREFIX=$XDG_CONFIG_HOME/wine
+SECRET_STORAGE=$XDG_CONFIG_HOME/pass
+SQLITE_HISTORY=$XDG_CACHE_HOME/history/sqlite3
+LESSHISTFILE=-
+GOPATH=$XDG_DATA_HOME/go
+MANPATH=($home/.local/share/man /usr/share/man)
+
+TZ=Europe/Moscow
+LANG=en_US.UTF-8
+LC_CTYPE=en_US.UTF-8
+LC_COLLATE=C
+EDITOR=vis
+PAGER='less -R'
+MANWIDTH=80
