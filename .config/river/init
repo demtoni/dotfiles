@@ -44,7 +44,7 @@ riverctl set-cursor-warp on-focus-change
 
 pipewire &
 foot -s &
-while fetchstats; do sleep 3; done | dam &
+while mon; do sleep 3; done | dam &
 
 riverctl default-layout rivertile
 

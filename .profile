@@ -11,7 +11,7 @@ SECRET_STORAGE=$XDG_CONFIG_HOME/pass
 SQLITE_HISTORY=$XDG_CACHE_HOME/history/sqlite3
 LESSHISTFILE=-
 GOPATH=$XDG_DATA_HOME/go
-MANPATH=($home/.local/share/man /usr/share/man)
+MANPATH=$home/.local/share/man:/usr/share/man
 
 TZ=Europe/Moscow
 LANG=en_US.UTF-8
