@@ -4,7 +4,7 @@ mod=Alt
 
 riverctl map normal $mod Return spawn footclient
 riverctl map normal $mod P spawn wmenu-run
-riverctl map normal $mod B spawn 'flatpak --user run com.vivaldi.Vivaldi'
+riverctl map normal $mod B spawn firefox
 riverctl map normal None Print spawn 'grim -g "$(slurp)" - | wl-copy -t image/png'
 
 riverctl map normal $mod X close

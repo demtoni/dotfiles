@@ -1,7 +1,26 @@
 . $home/.profile
 
+cwd=$home
 path=($home/.local/bin $GOPATH/bin /usr/bin)
 prompt=('% ' ' ')
 history=$XDG_CACHE_HOME/history/rc
 
 umask 022
+
+fn d {
+	echo $cwd
+}
+
+fn cd {
+	builtin cd $* && cwd=`pwd
+}
+
+fn e {
+	vis $*
+}
+
+fn n {
+	builtin cd $home/notes
+	e $*
+	cd $cwd
+}
